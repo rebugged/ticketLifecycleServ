@@ -28,9 +28,6 @@ public class Ticket extends Audit {
     @Column(name="ticket_description", length=500, nullable=true, unique=false)
     private String ticketDescription;
 
-    @Column(name="created_by", length=50, nullable=false, unique=false)
-    private String createdBy;
-
     @Column(name="assigned_to", length=50, nullable=false, unique=false)
     private String assignedTo;
 
