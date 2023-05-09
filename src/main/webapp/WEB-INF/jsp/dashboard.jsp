@@ -1,9 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page import="java.net.URL, java.util.*" %>
+<%@ page session="true" %>
+
 <html>
     <head>
         <title>Dashboard</title>
-        <link href="<c:url value="/css/common.css"/>" rel="stylesheet" type="text/css">
     </head>
     <body>
     <a href="/dashboard">Click here</a> to see all tickets.
