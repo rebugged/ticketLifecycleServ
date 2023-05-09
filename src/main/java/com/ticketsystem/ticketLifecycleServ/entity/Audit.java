@@ -1,14 +1,15 @@
 package com.ticketsystem.ticketLifecycleServ.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.MappedSuperclass;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
 
+import javax.persistence.Column;
+import javax.persistence.MappedSuperclass;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.util.Date;
 
 @Getter
@@ -18,10 +19,13 @@ import java.util.Date;
 @MappedSuperclass
 public class Audit {
 
-    @Column(name = "created_date", nullable = false, updatable = false)
+
+    @Column(name = "created_date")
+    @Temporal(TemporalType.DATE)
     private Date createdDate;
 
     @Column(name = "modified_date")
+    @Temporal(TemporalType.DATE)
     private Date modifiedDate;
 
     @Column(name = "created_by")

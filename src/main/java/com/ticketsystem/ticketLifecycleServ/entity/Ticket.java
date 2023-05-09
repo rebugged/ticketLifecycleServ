@@ -1,12 +1,11 @@
 package com.ticketsystem.ticketLifecycleServ.entity;
 
 
-import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
+import javax.persistence.*;
 
 
 @Data
@@ -18,7 +17,7 @@ import java.util.Date;
 public class Ticket extends Audit {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name = "ticket_id")
     private Long ticketId;
 
@@ -32,7 +31,7 @@ public class Ticket extends Audit {
     private String assignedTo;
 
     @Enumerated(EnumType.STRING)
-    @Column(name="assigned_to", length=50, nullable=false, unique=false)
+    @Column(name="ticket_status", length=50, nullable=false, unique=false)
     private TicketStatus ticketStatus;
 
 }

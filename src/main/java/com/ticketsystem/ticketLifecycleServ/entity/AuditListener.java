@@ -1,13 +1,14 @@
 package com.ticketsystem.ticketLifecycleServ.entity;
 
-import jakarta.persistence.PrePersist;
-import jakarta.persistence.PreUpdate;
-import jakarta.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestAttributes;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 
 @Component
@@ -41,11 +42,15 @@ public class AuditListener {
         if(object instanceof Ticket) {
             ((Ticket) object).setCreatedDate(new Date());
             ((Ticket) object).setCreatedBy(user_name);
+            ((Ticket) object).setModifiedDate(new Date());
+            ((Ticket) object).setModifiedBy(user_name);
         }
 
         if(object instanceof User) {
             ((User) object).setCreatedDate(new Date());
             ((User) object).setCreatedBy(user_name);
+            ((User) object).setModifiedDate(new Date());
+            ((User) object).setModifiedBy(user_name);
         }
     }
 

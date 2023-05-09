@@ -7,6 +7,9 @@ import com.ticketsystem.ticketLifecycleServ.repository.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Service
 public class TicketService {
 
@@ -23,16 +26,43 @@ public class TicketService {
         ticketDTO.setTicketDescription(ticket.getTicketDescription());
         ticketDTO.setCreatedBy(ticket.getCreatedBy());
         ticketDTO.setAssignedTo(ticket.getAssignedTo());
+        ticketDTO.setModifiedDate(ticket.getModifiedDate());
+        ticketDTO.setCreatedDate(ticket.getCreatedDate());
+        ticketDTO.setModifiedBy(ticket.getModifiedBy());
 
         return ticketDTO;
     }
 
+    public List<TicketDTO> findAllTickets() {
+        List<Ticket> ticketList = this.ticketRepository.findAll();
+
+        List<TicketDTO> ticketDTOList = ticketList.stream().map(ticket -> {
+            TicketDTO ticketDTO = new TicketDTO();
+            ticketDTO.setTicketId(ticket.getTicketId());
+            ticketDTO.setTicketStatus(ticket.getTicketStatus().status);
+            ticketDTO.setTicketHeading(ticket.getTicketHeading());
+            ticketDTO.setTicketDescription(ticket.getTicketDescription());
+            ticketDTO.setCreatedBy(ticket.getCreatedBy());
+            ticketDTO.setAssignedTo(ticket.getAssignedTo());
+            ticketDTO.setModifiedDate(ticket.getModifiedDate());
+            ticketDTO.setCreatedDate(ticket.getCreatedDate());
+            ticketDTO.setModifiedBy(ticket.getModifiedBy());
+            return ticketDTO;
+        }).collect(Collectors.toList());
+
+        return ticketDTOList;
+    }
+
     public TicketDTO createTicket(TicketDTO newTicketDTO) {
+        System.out.println("Create ticket - " + newTicketDTO);
         Ticket ticket = new Ticket();
         ticket.setTicketStatus(TicketStatus.valueOf(newTicketDTO.getTicketStatus()));
         ticket.setTicketHeading(newTicketDTO.getTicketHeading());
         ticket.setTicketDescription(newTicketDTO.getTicketDescription());
         ticket.setAssignedTo(newTicketDTO.getAssignedTo());
+        ticket.setModifiedDate(newTicketDTO.getModifiedDate());
+        ticket.setCreatedDate(newTicketDTO.getCreatedDate());
+        ticket.setModifiedBy(newTicketDTO.getModifiedBy());
 
         Ticket savedTicket = this.ticketRepository.save(ticket);
 
@@ -43,9 +73,17 @@ public class TicketService {
         newSavedTicketDTO.setTicketDescription(savedTicket.getTicketDescription());
         newSavedTicketDTO.setCreatedBy(savedTicket.getCreatedBy());
         newSavedTicketDTO.setAssignedTo(savedTicket.getAssignedTo());
+        newSavedTicketDTO.setModifiedDate(savedTicket.getModifiedDate());
+        newSavedTicketDTO.setCreatedDate(savedTicket.getCreatedDate());
+        newSavedTicketDTO.setModifiedBy(savedTicket.getModifiedBy());
 
         return newSavedTicketDTO;
 
+    }
+
+    public static void main(String ... args) {
+        TicketStatus status = TicketStatus.valueOf("OPEN");
+        System.out.println(status.name());
     }
 
 

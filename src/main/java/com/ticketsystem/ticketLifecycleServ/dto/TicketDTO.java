@@ -1,17 +1,20 @@
 package com.ticketsystem.ticketLifecycleServ.dto;
 
-import jakarta.validation.constraints.NotEmpty;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+
+import lombok.*;
+
+import javax.persistence.Column;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
+import java.util.Date;
 
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class TicketDTO {
 
     private Long ticketId;
@@ -34,4 +37,10 @@ public class TicketDTO {
     @NotEmpty
     @Size(max = 50)
     private String ticketStatus;
+
+    private Date createdDate;
+
+    private Date modifiedDate;
+
+    private String modifiedBy;
 }
