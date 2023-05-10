@@ -56,13 +56,10 @@ public class TicketService {
     public TicketDTO createTicket(TicketDTO newTicketDTO) {
         System.out.println("Create ticket - " + newTicketDTO);
         Ticket ticket = new Ticket();
-        ticket.setTicketStatus(TicketStatus.valueOf(newTicketDTO.getTicketStatus()));
+        ticket.setTicketStatus(TicketStatus.OPEN);
         ticket.setTicketHeading(newTicketDTO.getTicketHeading());
         ticket.setTicketDescription(newTicketDTO.getTicketDescription());
         ticket.setAssignedTo(newTicketDTO.getAssignedTo());
-        ticket.setModifiedDate(newTicketDTO.getModifiedDate());
-        ticket.setCreatedDate(newTicketDTO.getCreatedDate());
-        ticket.setModifiedBy(newTicketDTO.getModifiedBy());
 
         Ticket savedTicket = this.ticketRepository.save(ticket);
 

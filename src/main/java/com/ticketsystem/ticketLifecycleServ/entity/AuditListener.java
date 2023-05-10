@@ -57,7 +57,7 @@ public class AuditListener {
 
         userName = (String)request.getHeader("USER_NAME");
         if(StringUtils.isEmpty(userName)) {
-            userName = (String)request.getAttribute("USER_NAME");
+            userName = (String)request.getSession().getAttribute("username");
         }
         return userName;
     }

@@ -11,6 +11,7 @@ import org.springframework.util.CollectionUtils;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -83,7 +84,7 @@ public class DashboardService {
                 }).collect(Collectors.toList());
 
                 ticketDTOList1.addAll(ticketDTOList2);
-                return ticketDTOList1;
+                return dedup(ticketDTOList1);
             }
         } else {
             return null;
@@ -93,4 +94,11 @@ public class DashboardService {
     private List<String> fetchRoles(String username) {
         return userRoleRepository.getRolesOfUser(username);
     }
+
+
+    private List<TicketDTO> dedup(List<TicketDTO> ticketDTOList) {
+        HashSet<TicketDTO> ticketDTOHashSet = new HashSet<>(ticketDTOList);
+        return ticketDTOHashSet.stream().collect(Collectors.toList());
+    }
+
 }
