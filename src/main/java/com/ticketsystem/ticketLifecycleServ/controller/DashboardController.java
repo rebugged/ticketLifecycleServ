@@ -15,13 +15,13 @@ import javax.servlet.http.HttpServletRequest;
 public class DashboardController {
 
     @Autowired
-    private DashboardService ticketService;
+    private DashboardService dashboardService;
 
     @RequestMapping(value="/dashboard", method = RequestMethod.GET)
     public String showDashboard(ModelMap model, HttpServletRequest request){
         String user = (String)request.getSession().getAttribute("username");
         System.out.println("in contoller - "+user);
-        model.put("tickets", ticketService.getDashboardDetails(user));
+        model.put("tickets", dashboardService.getDashboardDetails(user));
         return "dashboard";
     }
 

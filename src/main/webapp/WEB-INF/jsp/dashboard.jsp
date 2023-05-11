@@ -11,14 +11,17 @@
     <body>
     <div class="container-md">
       <div class="row">
-        <div class="col-sm">
+        <div class="col">
           <h3>Welcome ${username}!</h3>
         </div>
-        <div class="col-sm">
+        <div class="col">
           <button type="button" class="btn btn-primary"><a href="/ticket" style="color:#ffffff;">Create Ticket</a></button>
         </div>
-        <div class="col-sm">
+        <div class="col">
           <button type="button" class="btn btn-primary"><a href="/dashboard" style="color:#ffffff;">Dashboard</a></button>
+        </div>
+        <div class="col">
+           <button type="button" class="btn btn-primary"><a href="/downloadTemplate" style="color:#ffffff;">Generate Report</a></button>
         </div>
       </div>
         <table class="table">
